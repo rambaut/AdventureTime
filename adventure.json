@@ -1,70 +1,71 @@
 {
   "stats": {
     "tiredness": 5,
-    "hunger": 5
+    "hunger": 5,
+    "vibe": "slay"
   },
   "start": "intro",
   "pages": {
     "intro": {
-      "text": "# Welcome Adventurer!\n\nYou wake up in a **mysterious forest**. Two paths lie ahead.\n\n- The left path is overgrown and shadowy.\n- The right path is clear but descends into darkness.\n\nWhat will you do?",
+      "text": "# Welcome Adventurer!\n\nYou wake up in a **mysterious forest**. Two paths lie ahead.\n\n- The left path is overgrown and shadowy.\n- The right path is clear but descends into darkness.\n\nYour vibe is currently **${vibe}**.\n\nWhat will you do?",
       "choices": [
-        { "text": "Take the left path", "target": "left_path", "explanation": "The left path looks wild and mysterious. Maybe there are secrets hidden in the undergrowth.", "statChanges": { "tiredness": -1 } },
-        { "text": "Take the right path", "target": "right_path", "explanation": "The right path is clear but descends into a dark cave. It might be dangerous, but also exciting!", "statChanges": { "hunger": -1 } }
+        { "text": "Take the left path", "target": "left_path", "explanation": "The left path looks wild and mysterious. Maybe there are secrets hidden in the undergrowth.", "statChanges": { "tiredness": -1, "vibe": "mid" } },
+        { "text": "Take the right path", "target": "right_path", "explanation": "The right path is clear but descends into a dark cave. It might be dangerous, but also exciting!", "statChanges": { "hunger": -1, "vibe": "based" } }
       ]
     },
     "left_path": {
-      "text": "## The River\n\nThe left path leads you to a **sparkling river**.\n\n![River](https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80)\n\nYou can either swim across, follow the river downstream, or investigate a picnic basket nearby.",
+      "text": "## The River\n\nThe left path leads you to a **sparkling river**.\n\nYour vibe is **${vibe}**.\n\n![River](https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80)\n\nYou can either swim across, follow the river downstream, or investigate a picnic basket nearby.",
       "statChanges": { "tiredness": -1 },
       "choices": [
-        { "text": "Swim across", "target": "river_swim", "explanation": "You could try to swim across the river, but the current looks strong.", "statChanges": { "tiredness": -2, "hunger": -1 } },
-        { "text": "Follow the river", "target": "river_follow", "explanation": "Following the river downstream might lead to civilization or safety.", "statChanges": { "hunger": -1 } },
-        { "text": "Investigate the picnic basket", "target": "find_cake", "explanation": "You spot a picnic basket with a delicious cake inside!", "statChanges": {}}
+        { "text": "Swim across", "target": "river_swim", "explanation": "You could try to swim across the river, but the current looks strong.", "statChanges": { "tiredness": -2, "hunger": -1, "vibe": "sus" } },
+        { "text": "Follow the river", "target": "river_follow", "explanation": "Following the river downstream might lead to civilization or safety.", "statChanges": { "hunger": -1, "vibe": "rizzed up" } },
+        { "text": "Investigate the picnic basket", "target": "find_cake", "explanation": "You spot a picnic basket with a delicious cake inside!", "statChanges": { "vibe": "snacc" }}
       ]
     },
     "right_path": {
-      "text": "## The Cave\n\nThe right path leads to a **dark cave**.\n\n> It's cold and you hear distant noises.\n\nDo you dare to enter? Or maybe you want to rest before going in?",
+      "text": "## The Cave\n\nThe right path leads to a **dark cave**.\n\nYour vibe is **${vibe}**.\n\n> It's cold and you hear distant noises.\n\nDo you dare to enter? Or maybe you want to rest before going in?",
       "statChanges": { "tiredness": -1, "hunger": -1 },
       "choices": [
-        { "text": "Enter the cave", "target": "cave_enter", "explanation": "Entering the cave could reveal hidden treasures or dangers.", "statChanges": { "tiredness": -1 } },
-        { "text": "Go back", "target": "intro", "explanation": "You can always go back and reconsider your options.", "statChanges": { "tiredness": 1 } },
-        { "text": "Have a nice sit down and a cup of tea", "target": "sit_tea", "explanation": "Take a break and recover your energy.", "statChanges": {} }
+        { "text": "Enter the cave", "target": "cave_enter", "explanation": "Entering the cave could reveal hidden treasures or dangers.", "statChanges": { "tiredness": -1, "vibe": "no cap" } },
+        { "text": "Go back", "target": "intro", "explanation": "You can always go back and reconsider your options.", "statChanges": { "tiredness": 1, "vibe": "retro" } },
+        { "text": "Have a nice sit down and a cup of tea", "target": "sit_tea", "explanation": "Take a break and recover your energy.", "statChanges": { "vibe": "chill" } }
       ]
     },
     "river_swim": {
-      "text": "### Swimming the River\n\nYou bravely swim across, but the current is strong.\n\n- You make it to the other side, exhausted.\n- You find a shiny **key** on the riverbank.\n\n[Continue your journey](#) (End of demo)",
-      "statChanges": { "tiredness": -2, "hunger": -1 },
+      "text": "### Swimming the River\n\nYou bravely swim across, but the current is strong.\n\nYour vibe is now **${vibe}**.\n\n- You make it to the other side, exhausted.\n- You find a shiny **key** on the riverbank.\n\n[Continue your journey](#) (End of demo)",
+      "statChanges": { "tiredness": -2, "hunger": -1, "vibe": "bussin'" },
       "choices": []
     },
     "river_follow": {
-      "text": "### Following the River\n\nYou follow the river and discover a small **village**.\n\n- The villagers welcome you.\n- You rest and recover.\n\n**Congratulations!** You found safety.\n\n[Restart adventure](#)",
-      "statChanges": { "tiredness": 2, "hunger": 2 },
+      "text": "### Following the River\n\nYou follow the river and discover a small **village**.\n\nYour vibe is **${vibe}**.\n\n- The villagers welcome you.\n- You rest and recover.\n\n**Congratulations!** You found safety.\n\n[Restart adventure](#)",
+      "statChanges": { "tiredness": 2, "hunger": 2, "vibe": "vibing" },
       "choices": [
-        { "text": "Restart", "target": "intro", "statChanges": { "tiredness": 0, "hunger": 0 } }
+        { "text": "Restart", "target": "intro", "statChanges": { "tiredness": 0, "hunger": 0, "vibe": "slay" } }
       ]
     },
     "cave_enter": {
-      "text": "### Inside the Cave\n\nYou enter the cave and your eyes adjust to the darkness.\n\n- You see ancient **drawings** on the wall.\n- A hidden passage leads deeper.\n\n*To be continued...*",
-      "statChanges": { "tiredness": -1, "hunger": -1 },
+      "text": "### Inside the Cave\n\nYou enter the cave and your eyes adjust to the darkness.\n\nYour vibe is **${vibe}**.\n\n- You see ancient **drawings** on the wall.\n- A hidden passage leads deeper.\n\n*To be continued...*",
+      "statChanges": { "tiredness": -1, "hunger": -1, "vibe": "yeet" },
       "choices": []
     },
     "find_cake": {
-      "text": "### You Find a Cake!\n\nYou find a delicious cake in the picnic basket. It looks fresh and tasty.",
+      "text": "### You Find a Cake!\n\nYou find a delicious cake in the picnic basket. It looks fresh and tasty.\n\nYour vibe is **${vibe}**.",
       "statChanges": {},
       "choices": [
-        { "text": "Eat the cake", "target": "left_path", "explanation": "You eat the cake and feel less hungry.", "statChanges": { "hunger": 2 } },
-        { "text": "Leave it", "target": "left_path", "explanation": "You decide not to eat the cake and continue your journey.", "statChanges": {} }
+        { "text": "Eat the cake", "target": "left_path", "explanation": "You eat the cake and feel less hungry.", "statChanges": { "hunger": 2, "vibe": "snacc" } },
+        { "text": "Leave it", "target": "left_path", "explanation": "You decide not to eat the cake and continue your journey.", "statChanges": { "vibe": "dry" } }
       ]
     },
     "sit_tea": {
-      "text": "### Have a Nice Sit Down and a Cup of Tea\n\nYou sit down on a comfy rock and enjoy a hot cup of tea. You feel your tiredness melt away.",
-      "statChanges": { "tiredness": 2 },
+      "text": "### Have a Nice Sit Down and a Cup of Tea\n\nYou sit down on a comfy rock and enjoy a hot cup of tea. You feel your tiredness melt away.\n\nYour vibe is **${vibe}**.",
+      "statChanges": { "tiredness": 2, "vibe": "chill" },
       "choices": [
-        { "text": "Continue to the cave", "target": "cave_enter", "explanation": "Feeling refreshed, you head into the cave.", "statChanges": {} },
-        { "text": "Go back to the forest", "target": "intro", "explanation": "You return to where you started.", "statChanges": {} }
+        { "text": "Continue to the cave", "target": "cave_enter", "explanation": "Feeling refreshed, you head into the cave.", "statChanges": { "vibe": "no cap" } },
+        { "text": "Go back to the forest", "target": "intro", "explanation": "You return to where you started.", "statChanges": { "vibe": "retro" } }
       ]
     },
     "death": {
-      "text": "## You have died\n\nYour hunger or tiredness has reached zero.\n\n**Game Over**",
+      "text": "## You have died\n\nYour hunger or tiredness has reached zero.\n\nYour final vibe was **${vibe}**.\n\n**Game Over**",
       "choices": []
     }
   }

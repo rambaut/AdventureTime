@@ -8,7 +8,8 @@ let initialStats = { steps: 0 };
 function applyStatChanges(changes) {
   if (!changes) return;
   for (const key in changes) {
-    if (typeof stats[key] === 'number') {
+    // If the stat is a number, increment/decrement; if string or new, set directly
+    if (typeof stats[key] === 'number' && typeof changes[key] === 'number') {
       stats[key] += changes[key];
     } else {
       stats[key] = changes[key];
@@ -35,11 +36,14 @@ function renderPage(pageId, {pushHistory = true, choiceStatChanges = null} = {})
     if (page && page.statChanges) {
       applyStatChanges(page.statChanges);
     }
-    // Check for death (but not if already on death page)
-    if (stats.hunger <= 0 || stats.tiredness <= 0) {
-      currentPage = 'death';
-      renderPage('death', {pushHistory: false});
-      return;
+    // Check for numeric stat death (not string stats, and skip 'steps')
+    for (const key in stats) {
+      if (key === 'steps') continue;
+      if (typeof stats[key] === 'number' && stats[key] <= 0) {
+        currentPage = 'death';
+        renderPage('death', {pushHistory: false});
+        return;
+      }
     }
   }
 
@@ -48,7 +52,11 @@ function renderPage(pageId, {pushHistory = true, choiceStatChanges = null} = {})
     root.innerHTML = `<div class="alert alert-danger">Page not found.</div>`;
     return;
   }
-  let html = `<div class="mb-4">${marked.parse(page.text)}</div>`;
+  // Substitute ${stat} variables in page text
+  let pageText = page.text.replace(/\$\{(\w+)\}/g, (match, statName) => {
+    return (statName in stats) ? stats[statName] : match;
+  });
+  let html = `<div class="mb-4">${marked.parse(pageText)}</div>`;
   if (page.choices && page.choices.length > 0) {
     html += '<div class="d-flex flex-column gap-3">';
     page.choices.forEach((choice, idx) => {
