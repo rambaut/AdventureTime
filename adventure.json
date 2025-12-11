@@ -65,9 +65,7 @@
     },
     "death": {
       "text": "## You have died\n\nYour hunger or tiredness has reached zero.\n\n**Game Over**",
-      "choices": [
-        { "text": "Restart", "target": "intro", "explanation": "Try again!", "statChanges": {} }
-      ]
+      "choices": []
     }
   }
 }

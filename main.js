@@ -138,13 +138,65 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-fetch('adventure.json')
-  .then(response => response.json())
-  .then(data => {
-    adventureData = data;
-    // Initialize stats from top-level JSON
-    initialStats = { steps: 0, ...(data.stats || {}) };
-    stats = {...initialStats};
-    statsStack = [];
-    renderPage(data.start, {pushHistory: false});
-  });
+
+// Show start screen and handle adventure loading
+document.addEventListener('DOMContentLoaded', () => {
+  // ...existing code...
+
+  // Start screen logic
+  const startScreen = document.getElementById('start-screen');
+  const adventureRoot = document.getElementById('adventure-root');
+  const statusPanel = document.getElementById('status-panel');
+  const loadBtn = document.getElementById('load-adventure-btn');
+  const demoBtn = document.getElementById('demo-adventure-btn');
+  const urlInput = document.getElementById('adventure-url');
+  const loadError = document.getElementById('load-error');
+
+  function loadAdventureFromUrl(url) {
+    loadError.style.display = 'none';
+    loadBtn.disabled = true;
+    if (demoBtn) demoBtn.disabled = true;
+    fetch(url)
+      .then(r => {
+        if (!r.ok) throw new Error('Could not fetch adventure JSON.');
+        return r.json();
+      })
+      .then(data => {
+        adventureData = data;
+        initialStats = { steps: 0, ...(data.stats || {}) };
+        stats = {...initialStats};
+        statsStack = [];
+        // Hide start screen, show adventure
+        startScreen.style.display = 'none';
+        adventureRoot.style.display = '';
+        statusPanel.style.display = '';
+        renderPage(data.start, {pushHistory: false});
+      })
+      .catch(err => {
+        loadError.textContent = 'Failed to load adventure: ' + err.message;
+        loadError.style.display = '';
+      })
+      .finally(() => {
+        loadBtn.disabled = false;
+        if (demoBtn) demoBtn.disabled = false;
+      });
+  }
+
+  if (loadBtn && urlInput) {
+    loadBtn.addEventListener('click', () => {
+      const url = urlInput.value.trim();
+      if (!url) {
+        loadError.textContent = 'Please enter a valid URL.';
+        loadError.style.display = '';
+        return;
+      }
+      loadAdventureFromUrl(url);
+    });
+  }
+
+  if (demoBtn) {
+    demoBtn.addEventListener('click', () => {
+      loadAdventureFromUrl('adventure.json');
+    });
+  }
+});

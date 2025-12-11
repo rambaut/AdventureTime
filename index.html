@@ -8,12 +8,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="adventure-root"></div>
-    <div id="status-panel" class="container mt-4">
-      <div class="d-flex justify-content-between align-items-center p-3 bg-light border rounded">
-        <div>
-          <!-- Future stats/progress here -->
+    <div id="start-screen" class="container mt-5">
+      <div class="card p-4 mx-auto" style="max-width: 500px;">
+        <h2 class="mb-3">Start Your Adventure</h2>
+        <label for="adventure-url" class="form-label">Paste the URL to your adventure JSON file:</label>
+        <input type="url" id="adventure-url" class="form-control mb-3" placeholder="https://.../adventure.json">
+        <div class="d-flex gap-2">
+          <button id="load-adventure-btn" class="btn btn-primary flex-fill">Load Adventure</button>
+          <button id="demo-adventure-btn" class="btn btn-secondary flex-fill">Demo</button>
         </div>
+        <div id="load-error" class="text-danger mt-2" style="display:none;"></div>
+      </div>
+    </div>
+    <div id="adventure-root" style="display:none;"></div>
+    <div id="status-panel" class="container mt-4" style="display:none;">
+      <div class="d-flex justify-content-between align-items-center p-3 bg-light border rounded">
+        <div></div>
         <div>
           <button id="back-btn" class="btn btn-secondary me-2">Back</button>
           <button id="restart-btn" class="btn btn-outline-primary">Restart</button>
