@@ -1,0 +1,40 @@
+{
+  "start": "intro",
+  "pages": {
+    "intro": {
+      "text": "# Welcome Adventurer!\n\nYou wake up in a **mysterious forest**. Two paths lie ahead.\n\n- The left path is overgrown and shadowy.\n- The right path is clear but descends into darkness.\n\nWhat will you do?",
+      "choices": [
+        { "text": "Take the left path", "target": "left_path", "explanation": "The left path looks wild and mysterious. Maybe there are secrets hidden in the undergrowth." },
+        { "text": "Take the right path", "target": "right_path", "explanation": "The right path is clear but descends into a dark cave. It might be dangerous, but also exciting!" }
+      ]
+    },
+    "left_path": {
+      "text": "## The River\n\nThe left path leads you to a **sparkling river**.\n\n![River](https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80)\n\nYou can either swim across or follow the river downstream.",
+      "choices": [
+        { "text": "Swim across", "target": "river_swim", "explanation": "You could try to swim across the river, but the current looks strong." },
+        { "text": "Follow the river", "target": "river_follow", "explanation": "Following the river downstream might lead to civilization or safety." }
+      ]
+    },
+    "right_path": {
+      "text": "## The Cave\n\nThe right path leads to a **dark cave**.\n\n> It's cold and you hear distant noises.\n\nDo you dare to enter?",
+      "choices": [
+        { "text": "Enter the cave", "target": "cave_enter", "explanation": "Entering the cave could reveal hidden treasures or dangers." },
+        { "text": "Go back", "target": "intro", "explanation": "You can always go back and reconsider your options." }
+      ]
+    },
+    "river_swim": {
+      "text": "### Swimming the River\n\nYou bravely swim across, but the current is strong.\n\n- You make it to the other side, exhausted.\n- You find a shiny **key** on the riverbank.\n\n[Continue your journey](#) (End of demo)",
+      "choices": []
+    },
+    "river_follow": {
+      "text": "### Following the River\n\nYou follow the river and discover a small **village**.\n\n- The villagers welcome you.\n- You rest and recover.\n\n**Congratulations!** You found safety.\n\n[Restart adventure](#)",
+      "choices": [
+        { "text": "Restart", "target": "intro" }
+      ]
+    },
+    "cave_enter": {
+      "text": "### Inside the Cave\n\nYou enter the cave and your eyes adjust to the darkness.\n\n- You see ancient **drawings** on the wall.\n- A hidden passage leads deeper.\n\n*To be continued...*",
+      "choices": []
+    }
+  }
+}
