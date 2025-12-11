@@ -1,4 +1,3 @@
-
 let adventureData = null;
 let currentPage = null;
 let historyStack = [];
@@ -15,23 +14,18 @@ function renderPage(pageId, {pushHistory = true} = {}) {
   }
   currentPage = pageId;
   if (!page) {
-    root.innerHTML = `<div class="alert alert-danger">Page not found.</div>`;
+    root.innerHTML = `<div class=\"alert alert-danger\">Page not found.</div>`;
     return;
   }
-  let html = `<div class="mb-4">${marked.parse(page.text)}</div>`;
+  let html = `<div class=\"mb-4\">${marked.parse(page.text)}</div>`;
   if (page.choices && page.choices.length > 0) {
-    html += '<div class="d-flex flex-column gap-3">';
+    html += '<div class=\"d-flex flex-column gap-3\">';
     page.choices.forEach((choice, idx) => {
-      html += `
-        <div class="card p-3 d-flex flex-row align-items-center justify-content-between">
-          <div class="me-3 flex-grow-1">${choice.explanation ? marked.parseInline(choice.explanation) : ''}</div>
-          <button class="btn btn-primary ms-3" onclick="chooseAdventure('${choice.target}')">${choice.text}</button>
-        </div>
-      `;
+      html += `\n        <div class=\"card p-3 d-flex flex-row align-items-center justify-content-between\">\n          <div class=\"me-3 flex-grow-1\">${choice.explanation ? marked.parseInline(choice.explanation) : ''}</div>\n          <button class=\"btn btn-primary ms-3\" onclick=\"chooseAdventure('${choice.target}')\">${choice.text}</button>\n        </div>\n      `;
     });
     html += '</div>';
   } else {
-    html += '<div class="alert alert-info">The End</div>';
+    html += '<div class=\"alert alert-info\">The End</div>';
   }
   root.innerHTML = html;
   updateStatusPanel();
@@ -73,7 +67,7 @@ function updateStatusPanel() {
       statsDiv.className = 'stats-display';
       statusPanel.querySelector('div.d-flex').prepend(statsDiv);
     }
-    statsDiv.innerHTML = `<span class="badge bg-info text-dark">Steps taken: ${stats.steps}</span>`;
+    statsDiv.innerHTML = `<span class=\"badge bg-info text-dark\">Steps taken: ${stats.steps}</span>`;
   }
 }
 
